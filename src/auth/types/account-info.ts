@@ -1,0 +1,6 @@
+export interface AccountInfo {
+    id: number;
+    username: string;
+    email: string;
+    role: string;
+}
