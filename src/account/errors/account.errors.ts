@@ -4,7 +4,7 @@ export const AccountErrors = {
         reason: 'Email is already taken by another user.',
     },
     UknownError: {
-        errorMessage: 'Something weird happenend, check logs for more detail.',
+        errorMessage: 'Something weird happened, check logs for more detail.',
         reason: 'Unknown internal server error.'
     }
 };
