@@ -11,7 +11,7 @@ import { ClassModule } from './class/class.module';
 
 @Module({
     imports: [DatabaseModule, AuthModule, AccountModule, ClassModule],
-    controllers: [AppController, ClassController],
-    providers: [AppService, ClassService],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
