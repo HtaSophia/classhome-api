@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, BelongsToMany } from 'sequelize-typescript';
+
 
 @Table
 export class Account extends Model {
@@ -27,4 +28,7 @@ export class Account extends Model {
         allowNull: false,
     })
     public role: string;
+
+    // @BelongsToMany(() => ClassEntity, 'ClassesAccounts')
+    // students: ClassEntity[]
 }

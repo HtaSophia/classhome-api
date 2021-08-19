@@ -3,7 +3,7 @@ import { UniqueConstraintError } from 'sequelize';
 import { AccountErrors } from './errors/account.errors';
 import { AccountDto } from './account.dto';
 import { Account } from './account.entity';
-import { ACCOUNT_REPOSITORY, LOG_MESSAGES } from './constants';
+import { ACCOUNT_REPOSITORY, LOG_MESSAGES } from './account constants';
 
 @Injectable()
 export class AccountService {

@@ -1,5 +1,5 @@
 import { Account } from './account.entity';
-import { ACCOUNT_REPOSITORY } from './constants';
+import { ACCOUNT_REPOSITORY } from './account constants';
 
 export const accountProviders = [
     {

@@ -28,7 +28,7 @@ export class ClasEntity extends Model {
     public professor: number;
 
 
-    @BelongsToMany(() => Account, 'ClassAccounts')
-    public students: Account[];
+    // @BelongsToMany(() => Account, 'ClassAccounts')
+    // public students: Account[];
 
 }
