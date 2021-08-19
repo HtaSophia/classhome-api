@@ -3,4 +3,8 @@ export const AccountErrors = {
         errorMessage: 'Email is already being used.',
         reason: 'Email is already taken by another user.',
     },
+    UknownError: {
+        errorMessage: 'Something weird happened, check logs for more detail.',
+        reason: 'Unknown internal server error.'
+    }
 };
