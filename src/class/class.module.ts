@@ -7,6 +7,7 @@ import { ClassService } from './class.service';
 @Module({
   imports: [DatabaseModule],
   providers: [ClassService, ...classProviders],
-  controllers: [ClassController]
+  controllers: [ClassController],
+  exports: [ClassService]
 })
 export class ClassModule {}

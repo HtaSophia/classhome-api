@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
-import { ClassEntity } from 'src/class/class.entity';
+import { ClassEntity } from '../class/class.entity';
 import { Account } from '../account/account.entity';
+import { ClassAccounts } from 'src/class/class.accounts.entity';
 
 export const databaseProviders = [
     {
@@ -15,7 +16,7 @@ export const databaseProviders = [
                 database: 'classhome',
             });
 
-            sequelize.addModels([Account, ClassEntity]);
+            sequelize.addModels([Account, ClassEntity, ClassAccounts]);
 
             await sequelize.sync();
             return sequelize;

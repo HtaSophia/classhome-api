@@ -1,7 +1,9 @@
-import { BelongsToMany, Column, DataType, Model } from "sequelize-typescript";
-import { Account } from "src/account/account.entity";
-import { AccountService } from "src/account/account.service";
+import { BelongsToMany, Column, DataType, Model, Table } from 'sequelize-typescript';
+import { Account } from '../account/account.entity';
+import { ClassAccounts } from './class.accounts.entity';
 
+
+@Table
 export class ClassEntity extends Model {
     @Column({
         type: DataType.STRING,
@@ -19,16 +21,14 @@ export class ClassEntity extends Model {
             len: [3, 120]
         }
     })
-    public description: string
+    public description: string;
 
     @Column({
-        type: DataType.NUMBER,
+        type: DataType.INTEGER,
         allowNull: false,
     })
     public professor: number;
 
-
-    // @BelongsToMany(() => Account, 'ClassAccounts')
-    // public students: Account[];
-
+    @BelongsToMany(() => Account, () => ClassAccounts)
+    public integrants: Account[];
 }
