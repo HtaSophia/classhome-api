@@ -4,7 +4,7 @@ import { ClassAccounts } from './class.accounts.entity';
 
 
 @Table
-export class ClassEntity extends Model {
+export class Class extends Model {
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -27,8 +27,8 @@ export class ClassEntity extends Model {
         type: DataType.INTEGER,
         allowNull: false,
     })
-    public professor: number;
+    public professor_id: number;
 
     @BelongsToMany(() => Account, () => ClassAccounts)
-    public integrants: Account[];
+    public integrants: Array<Account> = new Array();
 }

@@ -12,5 +12,5 @@ export class ClassDto {
 
     @IsNotEmpty()
     @IsNumber()
-    public professor: number;
+    public professor_id: number;
 }
