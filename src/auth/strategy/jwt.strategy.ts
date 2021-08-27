@@ -1,7 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { Account } from '../../account/account.entity';
+import { Account } from '../../account/account.schema';
 import { AccountService } from '../../account/account.service';
 import { jwtConstants } from '../constants';
 import { AccountInfo } from '../types/account-info';
@@ -17,6 +17,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 
     public async validate(payload: AccountInfo): Promise<Account> {
-        return this.accountService.findById(payload.id);
+        return this.accountService.findById(payload._id);
     }
 }
