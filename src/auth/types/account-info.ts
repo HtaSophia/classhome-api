@@ -1,5 +1,7 @@
+import { ObjectId } from '../../shared/types/object-id-helper';
+
 export interface AccountInfo {
-    id: number;
+    _id: ObjectId;
     username: string;
     email: string;
     role: string;
