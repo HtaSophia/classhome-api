@@ -23,7 +23,7 @@ export class AccountService {
         this.logger.log(LOG_MESSAGES.creatingNewUser);
 
         try {
-            return await this.accountModel.create(dto);
+            return await this.accounts.create(dto);
         } catch (error) {
             // if (error instanceof UniqueConstraintError) {
             //     this.logger.error(LOG_MESSAGES.duplicatedEmail);
@@ -38,11 +38,11 @@ export class AccountService {
     }
 
     public async findById(id: ObjectId): Promise<Account> {
-        return this.accountModel.findById(id);
+        return this.accounts.findById(id);
     }
 
     public async findUserByEmail(email: string): Promise<Account> {
         this.logger.log('Searching for user.');
-        return this.accountModel.findOne({ email });
+        return this.accounts.findOne({ email });
     }
 }
