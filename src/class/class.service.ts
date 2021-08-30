@@ -10,6 +10,7 @@ import { Class, ClassDocument } from './class.schema';
 @Injectable()
 export class ClassService {
     private logger: Logger;
+    private REMOVE_PASSWORD: string = '-password';
 
     public get classes(): Model<ClassDocument> {
         return this.classModel;
@@ -22,6 +23,7 @@ export class ClassService {
     public async create(dto: ClassDto): Promise<Class> {
         this.logger.log('Creating class with name: ' + dto.name);
         const { professor, ...rest } = dto;
+
         return this.classes
             .create({ ...rest, professor: ObjectIdTransform(professor) });
     }
@@ -31,40 +33,45 @@ export class ClassService {
             this.logger.log("Returning professor's classes ... ");
             return this.classes
                 .find({ professor: user._id })
-                .populate('professor')
-                .populate('students');
+                .populate('professor', this.REMOVE_PASSWORD)
+                .populate('students', this.REMOVE_PASSWORD);
         }
+
         this.logger.log("Returning students's classes ... ");
+
         return this.classes
             .find({ students: user._id })
-            .populate('professor')
-            .populate('students');
+            .populate('professor', this.REMOVE_PASSWORD)
+            .populate('students', this.REMOVE_PASSWORD);
     }
 
     public async getById(id: string): Promise<Class> {
         this.logger.log("Retrieving class with ID: " + id);
+
         return this.classes
             .findById(id.trim())
-            .populate('professor', '-password')
-            .populate('students', '-password');
+            .populate('professor', this.REMOVE_PASSWORD)
+            .populate('students', this.REMOVE_PASSWORD);
     }
 
     public async update(classId: string, dto: Partial<ClassDto>): Promise<Class> {
         this.logger.log('Updating class with ID: ' + classId);
         const { students, ...rest } = dto
+
         return this.classes
             .findByIdAndUpdate(
                 classId.trim(),
                 { ...rest },
                 { new: true }
             )
-            .populate('professor')
-            .populate('students');
+            .populate('professor', this.REMOVE_PASSWORD)
+            .populate('students', this.REMOVE_PASSWORD);
     }
 
     public async addStudents(classId: string, studentId: string): Promise<Class> {
         this.logger.log('Adding student id: ' + studentId + ' to class with ID: ' + classId);
         const objStudentId = ObjectIdTransform(studentId.trim());
+
         return await this.classes
             .findByIdAndUpdate(classId.trim(),
                 {
@@ -73,13 +80,14 @@ export class ClassService {
                 },
                 { new: true }
             )
-            .populate('professor', '-password')
-            .populate('students', '-password');
+            .populate('professor', this.REMOVE_PASSWORD)
+            .populate('students', this.REMOVE_PASSWORD);
     }
 
     public async removeStudent(classId: string, studentId: string): Promise<Class> {
         this.logger.log('Removing student id: ' + studentId + ' from class with ID: ' + classId);
         const objStudentId = ObjectIdTransform(studentId.trim());
+
         return await this.classes
             .findByIdAndUpdate(classId.trim(),
                 {
@@ -88,18 +96,23 @@ export class ClassService {
                 },
                 { new: true }
             )
-            .populate('professor', '-password')
-            .populate('students', '-password');
+            .populate('professor', this.REMOVE_PASSWORD)
+            .populate('students', this.REMOVE_PASSWORD);
     }
 
     public async delete(id: string): Promise<HttpStatus> {
         this.logger.log('Deleting class with ID: ' + id);
         const objClassId = ObjectIdTransform(id.trim())
         const deletedClass = await this.classes.findByIdAndDelete(objClassId);
+        
         if (deletedClass) {
             this.logger.log('Deleted class with ID: ' + id);
+
             return HttpStatus.NO_CONTENT;
         }
+
         return HttpStatus.NOT_FOUND;
     }
+
+    
 }
