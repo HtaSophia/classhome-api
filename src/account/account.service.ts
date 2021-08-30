@@ -25,13 +25,6 @@ export class AccountService {
         try {
             return await this.accountModel.create(dto);
         } catch (error) {
-            // if (error instanceof UniqueConstraintError) {
-            //     this.logger.error(LOG_MESSAGES.duplicatedEmail);
-            //     throw new BadRequestException(ERROR_MESSAGE.duplicatedEmail);
-            // } else {
-            //     this.logger.error('ERROR: ', error);
-            //     throw new InternalServerErrorException(ERROR_MESSAGE.unknownError);
-            // }
             this.logger.error('ERROR: ', error);
             throw new InternalServerErrorException(ERROR_MESSAGE.unknownError);
         }
