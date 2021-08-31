@@ -8,16 +8,13 @@ export class Class extends Entity {
     @Prop({ required: true })
     public name: string;
 
-    @Prop({ required: true, unique: true })
+    @Prop()
     public description: string;
 
     @Prop({ type: Types.ObjectId, ref: 'Account', required: true })
     public professor: ObjectId;
 
-    @Prop({
-        type: [{ type: Types.ObjectId, ref: 'Account' }],
-        required: true,
-    })
+    @Prop({ type: [{ type: Types.ObjectId, ref: 'Account' }] })
     public students: ObjectId[];
 }
 
