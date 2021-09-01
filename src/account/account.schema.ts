@@ -11,7 +11,7 @@ export class Account extends Entity {
     @Prop({ required: true, unique: true })
     public email: string;
 
-    @Prop({ required: true })
+    @Prop({ required: true, select: false })
     public password: string;
 
     @Prop({

@@ -5,6 +5,7 @@ import { AuthController } from './auth.controller';
 import { AccountModule } from '../account/account.module';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './strategy/jwt.strategy';
+import { RolesGuard } from './guards/roles.guard';
 
 @Module({
     imports: [
