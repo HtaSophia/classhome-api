@@ -6,7 +6,12 @@ import { ObjectIdPipe } from './pipes/object-id.pipe';
 import { ClassModule } from './class/class.module';
 
 @Module({
-    imports: [MongooseModule.forRoot('mongodb://localhost:27017/classhome'), AuthModule, AccountModule, ClassModule],
+    imports: [
+        MongooseModule.forRoot('mongodb://localhost:27017/classhome', { useFindAndModify: false }),
+        AuthModule,
+        AccountModule,
+        ClassModule,
+    ],
     controllers: [],
     providers: [ObjectIdPipe],
 })
