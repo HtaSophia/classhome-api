@@ -36,6 +36,6 @@ export class AccountService {
 
     public async findUserByEmail(email: string): Promise<Account> {
         this.logger.log('Searching for user.');
-        return this.accountModel.findOne({ email });
+        return this.accountModel.findOne({ email }).select('+password');
     }
 }
