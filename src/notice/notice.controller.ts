@@ -1,34 +1,37 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ObjectIdTransform } from 'src/shared/types/object-id-helper';
+import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards } from '@nestjs/common';
 import { NoticeService } from './notice.service';
 import { CreateNoticeDto } from './dto/create-notice.dto';
 import { UpdateNoticeDto } from './dto/update-notice.dto';
+import { JwtGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('notice')
+@UseGuards(JwtGuard)
 export class NoticeController {
   constructor(private readonly noticeService: NoticeService) {}
 
   @Post()
-  create(@Body() createNoticeDto: CreateNoticeDto) {
+  public async create(@Body() createNoticeDto: CreateNoticeDto) {
     return this.noticeService.create(createNoticeDto);
   }
 
   @Get()
-  findAll() {
+  public async findAll() {
     return this.noticeService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.noticeService.findOne(+id);
+  public async findOne(@Param('id') id: string) {
+    return this.noticeService.findById(ObjectIdTransform(+id));
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateNoticeDto: UpdateNoticeDto) {
-    return this.noticeService.update(+id, updateNoticeDto);
+  @Put(':id')
+  public async update(@Param('id') id: string, @Body() updateNoticeDto: UpdateNoticeDto) {
+    return this.noticeService.update(ObjectIdTransform(+id), updateNoticeDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.noticeService.remove(+id);
+  public async remove(@Param('id') id: string) {
+    return this.noticeService.remove(ObjectIdTransform(+id));
   }
 }

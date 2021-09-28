@@ -15,7 +15,7 @@ export class NoticeService {
   }
 
   constructor(
-    @InjectModel("Notice") private readonly noticeModel: Model<NoticeDocument>
+    @InjectModel('Notice') private readonly noticeModel: Model<NoticeDocument>
   ) {
     this.logger = new Logger(NoticeService.name);
   }
