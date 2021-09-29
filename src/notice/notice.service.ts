@@ -3,7 +3,6 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { ObjectId, ObjectIdTransform } from "src/shared/types/object-id-helper";
 import { CreateNoticeDto } from "./dto/create-notice.dto";
-import { UpdateNoticeDto } from "./dto/update-notice.dto";
 import { Notice, NoticeDocument } from "./schema/notice.schema";
 
 @Injectable()
@@ -43,7 +42,7 @@ export class NoticeService {
     return await this.notices.findById({ _id });
   }
 
-  public async update(_id: ObjectId, updateNoticeDto: UpdateNoticeDto) {
+  public async update(_id: ObjectId, updateNoticeDto: Partial<CreateNoticeDto>) {
     this.logger.log(`Updating notice with id: ${_id.toString()}`);
     return this.notices.findOneAndUpdate(
       { _id },
