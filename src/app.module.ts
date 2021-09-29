@@ -4,6 +4,7 @@ import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
 import { ObjectIdPipe } from './pipes/object-id.pipe';
 import { ClassModule } from './class/class.module';
+import { TopicModule } from './topic/topic.module';
 
 @Module({
     imports: [
@@ -11,6 +12,7 @@ import { ClassModule } from './class/class.module';
         AuthModule,
         AccountModule,
         ClassModule,
+        TopicModule,
     ],
     controllers: [],
     providers: [ObjectIdPipe],
