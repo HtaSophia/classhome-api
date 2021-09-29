@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Entity } from "src/shared/types/entity";
 
-@Schema( {timestamps : true} )
+@Schema({ timestamps : true })
 export class Topic extends Entity {
-    @Prop({required: true})
+    @Prop({ required: true })
     public name: string;
 }
 

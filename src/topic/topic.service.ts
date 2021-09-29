@@ -14,7 +14,7 @@ export class TopicService {
   }
 
   constructor(
-    @InjectModel("Class") private readonly topicModel: Model<TopicDocument>
+    @InjectModel('Topic') private readonly topicModel: Model<TopicDocument>
   ) {
     this.logger = new Logger(TopicService.name);
   }
