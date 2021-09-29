@@ -3,7 +3,6 @@ import { JwtGuard } from './../auth/guards/jwt.guard';
 import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
 import { TopicService } from './topic.service';
 import { CreateTopicDto } from './dto/create-topic.dto';
-import { UpdateTopicDto } from './dto/update-topic.dto';
 import { UseRoles } from 'src/auth/decorators/roles.decorator';
 import { Roles } from 'src/account/enum/roles.enum';
 import { ObjectIdTransform } from 'src/shared/types/object-id-helper';
@@ -33,7 +32,7 @@ export class TopicController {
 
   @UseRoles(Roles.PROFESSOR)
   @Put(':id')
-  public async update(@Param('id') id: string, @Body() updateTopicDto: UpdateTopicDto) {
+  public async update(@Param('id') id: string, @Body() updateTopicDto: Partial<CreateTopicDto>) {
     return this.topicService.update(ObjectIdTransform(id), updateTopicDto);
   }
   
