@@ -5,6 +5,8 @@ import { AccountModule } from './account/account.module';
 import { ObjectIdPipe } from './pipes/object-id.pipe';
 import { ClassModule } from './class/class.module';
 import { ChatModule } from './chat/chat.module';
+import { NoticeModule } from './notice/notice.module';
+
 
 @Module({
     imports: [
@@ -13,6 +15,7 @@ import { ChatModule } from './chat/chat.module';
         AccountModule,
         ClassModule,
         ChatModule,
+        NoticeModule,
     ],
     controllers: [],
     providers: [ObjectIdPipe],
