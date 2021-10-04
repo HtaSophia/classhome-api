@@ -17,8 +17,7 @@ export class ChatService {
         this.logger = new Logger(ChatService.name);
     }
 
-
-  async create(owner: ObjectId, message: string): Promise<Chat> {
+  async create(noticeId: ObjectId, owner: ObjectId, message: string): Promise<Chat> {
     return await this.chats.create( { $push: { message: new Message(owner, message) } })
   }
 
