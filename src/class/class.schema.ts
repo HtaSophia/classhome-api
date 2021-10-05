@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
+import { Notice } from 'src/notice/schema/notice.schema';
 import { Entity } from '../shared/types/entity';
 import { ObjectId } from '../shared/types/object-id-helper';
 
@@ -16,6 +17,9 @@ export class Class extends Entity {
 
     @Prop({ type: [{ type: Types.ObjectId, ref: 'Account' }] })
     public students: ObjectId[];
+
+    @Prop({ type: [{ type : Types.ObjectId, ref: 'Notice'}] })
+    public notices: Notice[];
 }
 
 export type ClassDocument = Class & Document;
