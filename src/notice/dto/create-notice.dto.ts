@@ -16,8 +16,11 @@ export class CreateNoticeDto {
     public readonly postedDate: Date = new Date();
 
     @IsString()
-    @IsNotEmpty()
     @IsMongoId()
     public readonly chat: string;
+
+    @IsString()
+    @IsMongoId()
+    public readonly activity: string;
     
 }
