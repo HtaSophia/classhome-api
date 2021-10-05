@@ -26,17 +26,17 @@ export class ChatService {
     }
 
   async create(noticeId: ObjectId, owner: ObjectId, message: string): Promise<Chat> {
-    const newMessage = new Message(owner, message);
-    const newChat =  await this.chats.create( { $push: { message: newMessage } })
+    const now = new Date();
+    const newChat =  await this.chats.create( { $push: { message: message, owner: owner, date: now } })
     this.notices.findOneAndUpdate( {_id: noticeId}, { $set: {chat: newChat._id} } )
     return newChat;
   }
 
   async addMessage(chatId: ObjectId, owner: ObjectId, message: string): Promise<Chat> {
-    const newMessage = new Message(owner, message);
+    const now = new Date();
     return await this.chats
     .findOneAndUpdate(
-        { _id: chatId }, { $push: { messages: newMessage } }, { new: true }
+        { _id: chatId }, { $push: { messages: {message: message, owner: owner, date: now} } }, { new: true }
       )
   }
 }
