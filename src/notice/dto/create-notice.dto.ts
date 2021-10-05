@@ -18,5 +18,9 @@ export class CreateNoticeDto {
     @IsString()
     @IsMongoId()
     public readonly chat: string;
+
+    @IsString()
+    @IsMongoId()
+    public readonly activity: string;
     
 }

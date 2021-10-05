@@ -4,9 +4,9 @@ import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
 import { ObjectIdPipe } from './pipes/object-id.pipe';
 import { ClassModule } from './class/class.module';
+import { TopicModule } from './topic/topic.module';
 import { ChatModule } from './chat/chat.module';
 import { NoticeModule } from './notice/notice.module';
-
 
 @Module({
     imports: [
@@ -14,8 +14,10 @@ import { NoticeModule } from './notice/notice.module';
         AuthModule,
         AccountModule,
         ClassModule,
+        TopicModule,
         ChatModule,
         NoticeModule,
+
     ],
     controllers: [],
     providers: [ObjectIdPipe],

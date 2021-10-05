@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { ObjectId, ObjectIdTransform } from "src/shared/types/object-id-helper";
 import { CreateNoticeDto } from "./dto/create-notice.dto";
+import { NoticeType } from "./enum/notice.types.enum";
 import { Notice, NoticeDocument } from "./schema/notice.schema";
 
 @Injectable()
@@ -21,14 +22,25 @@ export class NoticeService {
 
   public async create(createNoticeDto: CreateNoticeDto): Promise<Notice> {
     this.logger.log(`Creating notice with type: ${createNoticeDto.owner.toString()} and owner: ${createNoticeDto.owner.toString()}`);
-    const { owner, chat, ...rest } = createNoticeDto;
+    const { activity, owner, chat, ...rest } = createNoticeDto;
 
-    const newNotice = await this.notices.create({
+    let newNotice: Notice;
+    
+    if (createNoticeDto.type === NoticeType.ACITIVITY) {
+      newNotice = await this.notices.create({
+        activity: ObjectIdTransform(activity),
+        owner: ObjectIdTransform(owner),
+        chat: ObjectIdTransform(chat),
+        ...rest,
+      });
+    }
+
+    newNotice = await this.notices.create({
       owner: ObjectIdTransform(owner),
       chat: ObjectIdTransform(chat),
       ...rest,
     });
-
+     
     return this.notices.findById(newNotice._id);
   }
 
