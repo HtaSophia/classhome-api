@@ -7,6 +7,7 @@ import { ClassModule } from './class/class.module';
 import { TopicModule } from './topic/topic.module';
 import { ChatModule } from './chat/chat.module';
 import { NoticeModule } from './notice/notice.module';
+import { ActivityModule } from './activity/activity.module';
 
 @Module({
     imports: [
@@ -17,7 +18,7 @@ import { NoticeModule } from './notice/notice.module';
         TopicModule,
         ChatModule,
         NoticeModule,
-
+        ActivityModule,
     ],
     controllers: [],
     providers: [ObjectIdPipe],
