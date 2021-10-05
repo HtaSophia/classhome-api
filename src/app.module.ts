@@ -6,6 +6,7 @@ import { ObjectIdPipe } from './pipes/object-id.pipe';
 import { ClassModule } from './class/class.module';
 import { ChatModule } from './chat/chat.module';
 import { NoticeModule } from './notice/notice.module';
+import { ActivityModule } from './activity/activity.module';
 
 
 @Module({
@@ -16,6 +17,7 @@ import { NoticeModule } from './notice/notice.module';
         ClassModule,
         ChatModule,
         NoticeModule,
+        ActivityModule,
     ],
     controllers: [],
     providers: [ObjectIdPipe],
