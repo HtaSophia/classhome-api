@@ -7,6 +7,7 @@ import { Notice, NoticeSchema } from './schema/notice.schema';
 @Module({
   imports:[MongooseModule.forFeature([{ name: Notice.name, schema: NoticeSchema }])],
   controllers: [NoticeController],
-  providers: [NoticeService]
+  providers: [NoticeService],
+  exports: [MongooseModule.forFeature([{ name: Notice.name, schema: NoticeSchema }])],
 })
 export class NoticeModule {}
